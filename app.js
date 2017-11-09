@@ -37,6 +37,29 @@ $('#message-form').submit(function(event) {
       votes: 0
     });
   });
+
+$('h1Form').submit(function(event) {
+    // by default a form submit reloads the DOM which will subsequently reload all our JS
+    // to avoid this we preventDefault()
+    event.preventDefault();
+    // grab user message input
+    var newArtist = $('#new-artist').val();
+
+
+
+      // clear message input (for UX purposes)
+    $('#new-artist').val('');
+
+    // create a section for messages data in your db
+    var artistReference = database.ref('artists');
+
+    // use the set method to save data to the messages
+    artistReference.push({
+      artist: artist,
+    });
+  });
+
+
 getFanMessages();
   // READ
   function getFanMessages() {
@@ -64,4 +87,13 @@ getFanMessages();
 
         // bind the results to the DOM
   }
+
+  //UPDATE
+  var $h1Form = $('<form>Better Artist: <input id="newartist" type="text" name="artist"></form>');
+
+  var artistReference = database.ref('artist');
+
+
+  $('.navbar-header').append($h1Form);
+
 });
