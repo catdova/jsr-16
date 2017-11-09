@@ -19,11 +19,13 @@ $('#message-form').submit(function(event) {
     // by default a form submit reloads the DOM which will subsequently reload all our JS
     // to avoid this we preventDefault()
     event.preventDefault();
-
+    $('.message-board').empty();
     // grab user message input
     var message = $('#message').val();
 
-    // clear message input (for UX purposes)
+
+
+      // clear message input (for UX purposes)
     $('#message').val('');
 
     // create a section for messages data in your db
