@@ -38,25 +38,24 @@ $('#message-form').submit(function(event) {
     });
   });
 
-$('h1Form').submit(function(event) {
+$('#artistform').submit(function(event) {
     // by default a form submit reloads the DOM which will subsequently reload all our JS
     // to avoid this we preventDefault()
     event.preventDefault();
     // grab user message input
-    var newArtist = $('#new-artist').val();
-
-
+    var newArtist = $('#newartist').val();
 
       // clear message input (for UX purposes)
-    $('#new-artist').val('');
+    $('#newartist').val('');
 
-    // create a section for messages data in your db
+    // create a section for artists data in your db
     var artistReference = database.ref('artists');
 
-    // use the set method to save data to the messages
+    // use the set method to save data to the artists
     artistReference.push({
-      artist: artist,
+      artist: artist
     });
+
   });
 
 
@@ -89,7 +88,7 @@ getFanMessages();
   }
 
   //UPDATE
-  var $h1Form = $('<form>Better Artist: <input id="newartist" type="text" name="artist"></form>');
+  var $h1Form = $('<form id="artistform" >Better Artist: <input id="newartist" type="text" name="artist"></form>');
 
   var artistReference = database.ref('artist');
 
