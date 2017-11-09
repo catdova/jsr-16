@@ -12,6 +12,9 @@
 $(document).ready(function() {
   var database = firebase.database();
 
+  var $h1Form = $('<form action="" id="artist-form" >Better Artist: <input id="newartist" type="text" name="artist"></form>');
+
+  $('.navbar-header').append($h1Form);
 
   // CREATE
 
@@ -38,12 +41,13 @@ $('#message-form').submit(function(event) {
     });
   });
 
-$('#artistform').submit(function(event) {
+$('#artist-form').submit(function(event) {
     // by default a form submit reloads the DOM which will subsequently reload all our JS
     // to avoid this we preventDefault()
     event.preventDefault();
     // grab user message input
     var newArtist = $('#newartist').val();
+    console.log(newArtist);
 
       // clear message input (for UX purposes)
     $('#newartist').val('');
@@ -53,7 +57,7 @@ $('#artistform').submit(function(event) {
 
     // use the set method to save data to the artists
     artistReference.push({
-      artist: artist
+      artist: newArtist
     });
 
   });
@@ -88,11 +92,6 @@ getFanMessages();
   }
 
   //UPDATE
-  var $h1Form = $('<form id="artistform" >Better Artist: <input id="newartist" type="text" name="artist"></form>');
 
-  var artistReference = database.ref('artist');
-
-
-  $('.navbar-header').append($h1Form);
 
 });
