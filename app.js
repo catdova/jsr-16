@@ -91,7 +91,36 @@ getFanMessages();
         // bind the results to the DOM
   }
 
+
+
+
+    function updateNewArtist() {
+
+    // use reference to app database to listen for changes in messages data
+    // hint: use something referring to 'value'
+    var artistReference = database.ref('artists');
+
+    artistReference.on('value', 
+      function(results){
+
+        var allArtists = results.val();
+
+        for (var comment in allArtists) {
+
+        $('#fan-artist').html(allArtists[comment].artist);
+
+        
+        }
+
+      });
+
+      // iterate through results coming from database call; messages
+
+        // bind the results to the DOM
+  }
+
   //UPDATE
 
+  
 
 });
